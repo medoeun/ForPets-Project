@@ -11,6 +11,8 @@
  *기능시현 등 자세한 프로젝트 설명이 첨부되어있습니다*
 
  작업했던 repository : https://github.com/Seoyeongit/ETeamProject
+ 
+ <br>
  관리자 파트 수정 중(8/08~)
  
  ## 구현 기능
