@@ -475,6 +475,17 @@ INSERT INTO COMMUNITY VALUES('c0000000003','인삼 개껌 공구하실분','개�
 
 ALTER TABLE COMMUNITY
     ADD CONSTRAINT C_CODE_PK PRIMARY KEY (C_CODE);
+    
+ALTER TABLE COMMUNITY ADD C_PET VARCHAR2(10);
+
+UPDATE COMMUNITY SET C_PET = '강아지' WHERE C_CODE = 'c0000000003';
+
+COMMIT;
+
+
+
+COMMIT;
+
 
 -- 시간 한국 표준시 (맥북)
 -- ALTER SESSION SET TIME_ZONE = '09:00';
@@ -657,6 +668,7 @@ CREATE SEQUENCE re_seq
 -- reserve table
 -- 예약확인페이지에서 구분하기위해서 status칼럼을 추가했습니다.
 -- pickup 서비스에서 사용할 주소 칼럼을 추가했습니다.
+
 CREATE TABLE reserve
 (   
     re_seq NUMBER(8) NOT NULL,          -- 시퀀스
@@ -675,9 +687,21 @@ CREATE TABLE reserve
     -- 요청사항
     reserve_request VARCHAR2(2000) NULL
 );
+
+ALTER TABLE reserve MODIFY PAY_DATE VARCHAR2(20);
+
+UPDATE reserve SET pay_date = '2023/08/15' where reserve_num=1;
+UPDATE reserve SET pay_date = '2023/06/15' where reserve_num=2;
+UPDATE reserve SET pay_date = '2023/07/15' where reserve_num=3;
+commit;
+
+commit;
+
 select * from reserve;
 -- reserve table primary key
 ALTER TABLE reserve ADD CONSTRAINT re_seq PRIMARY KEY (re_seq);
+
+
 
 -- serv table sequence
 CREATE SEQUENCE serv_seq
@@ -741,6 +765,7 @@ INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, t
 INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'고양이','꿀팁입니당',NULL,NULL,1,NULL);
 INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'애들','꿀팁입니당',NULL,NULL,1,NULL);
 
+select * from tip_board;
 
 --230203 연은비 DB수정리스트
 --table이름 수정 signUp -> users
@@ -912,6 +937,8 @@ CREATE TABLE review
     r_date DATE NULL,                       -- 작성 날짜
     reserv_num NUMBER(8) NOT NULL          -- 리뷰넘버
 );
+
+
 
 CREATE SEQUENCE r_seq
   START WITH 1
@@ -1117,3 +1144,55 @@ where part_id='bpb222';
 select * from partners;
 select * from reserve;
 delete from reserve where reserve_num='RN_44';
+
+select * from admin;
+
+
+create table partner_review
+( 
+    pr_num NUMBER(8) NOT NULL,      --- 파트너 리뷰 시퀀스
+    part_id VARCHAR2(20) NOT NULL,  --- 파트너 id
+    user_id VARCHAR2(20) NOT NULL,  --- 리뷰 남긴 유저 id
+    pr_avg NUMBER(5) NULL,          --- 리뷰 점수
+    pr_title VARCHAR2(100) NULL,    --- 리뷰 제목
+    pr_content VARCHAR2(2000) NULL, --- 리뷰 내용
+    pr_date DATE NULL               --- 날짜
+);
+
+ALTER TABLE partner_review
+    ADD CONSTRAINT pr_user_id FOREIGN KEY (user_id) REFERENCES users(user_id) on delete cascade;
+
+ALTER TABLE partner_review
+    ADD CONSTRAINT pr_part_id FOREIGN KEY (part_id) REFERENCES partners(part_id) on delete cascade;    
+    
+ALTER TABLE partner_review
+    ADD CONSTRAINT pr_num PRIMARY KEY (pr_num);
+
+
+CREATE SEQUENCE pr_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+
+INSERT INTO partner_review VALUES ((pr_seq.NEXTVAL),'ppp222','abc123','5','친절하고 능숙한 펫트너님','애기 병원 픽업할 때마다 믿고 맡길 수 있어요!!',sysdate);
+INSERT INTO partner_review VALUES ((pr_seq.NEXTVAL),'ppp222','abc456','4','좋습니다~!','항상 감사합니다.',sysdate);
+INSERT INTO partner_review VALUES ((pr_seq.NEXTVAL),'bpb222','abc789','3','다 좋지만','좀 더 시간 약속을 지켜 주셨으면 좋겠습니다.',sysdate);
+
+
+create table partner_review
+( 
+    pr_num NUMBER(8) NOT NULL,      --- 파트너 리뷰 시퀀스
+    part_id VARCHAR2(20) NOT NULL,  --- 파트너 id
+    user_id VARCHAR2(20) NOT NULL,  --- 리뷰 남긴 유저 id
+    pr_avg NUMBER(5) NULL,          --- 리뷰 점수
+    pr_title VARCHAR2(100) NULL,    --- 리뷰 제목
+    pr_content VARCHAR2(2000) NULL, --- 리뷰 내용
+    pr_date DATE NULL               --- 날짜
+);
+select avg(pr_avg) from partner_review;
+
+SELECT TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') ASC;
+
+commit;
