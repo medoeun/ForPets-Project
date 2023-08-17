@@ -102,7 +102,9 @@
 									<div class="col">
 										<div class="mb-0 text-gray-800">
 											<p class="h2 mb-0 font-weight-bold">
+												
 												<fmt:formatNumber value="${dstats.reviewAvg}" pattern=".00" />
+												 
 												/ 5 <span class="h6 mb-0 font-weight-bold">(점)</span>
 											</p>
 										</div>

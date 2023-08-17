@@ -28,6 +28,7 @@ import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
 import com.forpets.biz.partnerReview.PartnerReviewService;
+//import com.forpets.biz.partnerReview.PartnerReviewService;
 import com.forpets.biz.pet.PetService;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.tip.SearchCriteria;
@@ -139,7 +140,8 @@ public class AdminController {
 //		System.out.println("getUserList");
 //		return "/Admin/mgmtUser";
 //	}
-//	
+
+	
 	// 회원 탈퇴
 	@RequestMapping(value = "/Admin/deleteUser/{user_id}")
 	public String deleteUser(UserVO uvo, @PathVariable("user_id") String user_id) {
