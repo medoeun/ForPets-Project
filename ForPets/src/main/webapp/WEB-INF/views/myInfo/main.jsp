@@ -196,7 +196,7 @@ a input[id=register_wark] {
 		//회원정보수정페이지로 넘어갑니다.
 		$("#edit-user-info").click(function() {
 			var liurl = "../myInfo/edit-Profile";
-			var newUrl = 'http://localhost:8000/biz/myInfo/edit-Profile';
+			var newUrl = 'http://localhost:8081/biz/myInfo/edit-Profile';
 
 			$.ajax({
 				type : 'POST',
@@ -216,7 +216,7 @@ a input[id=register_wark] {
 		//예약정보확인페이지로 넘어갑니다.
 		$('#check-user-reserve').click(function() {
 			var liurl = "../myInfo/check-reservation";
-			var newUrl = 'http://localhost:8000/biz/myInfo/check-reservation';
+			var newUrl = 'http://localhost:8081/biz/myInfo/check-reservation';
 
 			$.ajax({
 				type : 'POST',
@@ -236,7 +236,7 @@ a input[id=register_wark] {
 		//돌봄일지 페이지로 넘어갑니다.
 		$('#check-user-careDiary').click(function() {
 			var liurl = "../myInfo/viewCare";
-			var newUrl = 'http://localhost:8000/biz/myInfo/viewCare';
+			var newUrl = 'http://localhost:8081/biz/myInfo/viewCare';
 
 
 			$.ajax({
@@ -257,7 +257,7 @@ a input[id=register_wark] {
 		function getID(id) {
 			var liurl = "../myInfo/my_careDiary_detail";
 			var diary_id = id;
-			var newUrl = 'http://localhost:8000/biz/myInfo/viewCare_detail';
+			var newUrl = 'http://localhost:8081/biz/myInfo/viewCare_detail';
 
 			$.ajax({
 				url : liurl,
@@ -295,7 +295,7 @@ a input[id=register_wark] {
 		//리뷰페이지로 넘어갑니다.
 		$("#write-review").click(function() {
 			var liurl = "../myInfo/review";
-			var newUrl = 'http://localhost:8000/biz/myInfo/review';
+			var newUrl = 'http://localhost:8081/biz/myInfo/review';
 
 			$.ajax({
 				type : 'POST',
@@ -315,7 +315,7 @@ a input[id=register_wark] {
 		//나의소모임페이지로 넘어갑니다.
 		$("#get-myCommu").click(function() {
 			var liurl = "../myInfo/viewMycommuMain";
-			var newUrl = 'http://localhost:8000/biz/myInfo/getMyCommu';
+			var newUrl = 'http://localhost:8081/biz/myInfo/getMyCommu';
 
 			$.ajax({
 				type : 'POST',
