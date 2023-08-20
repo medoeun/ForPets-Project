@@ -188,6 +188,7 @@ a input[id=register_wark] {
 				},
 				error : function(result) {
 					alert(result);
+					console.log(result);
 				}
 
 			});

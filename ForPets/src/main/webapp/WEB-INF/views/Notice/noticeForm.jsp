@@ -32,7 +32,7 @@
 					<h3 class="h3 mb-0 text-gray-800">공지사항 등록</h3>
 				</div>
 				<div class="card shadow mb-4">
-					<form action="insertNotice.do" method="post">
+					<form action="insertNotice" method="post">
 						<div class="table-responsive px-5">
 							<table class="table table-borderless align-middle">
 								<tr>

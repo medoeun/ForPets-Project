@@ -36,7 +36,7 @@
 				</div>
 				<div class="card shadow mb-4">
 
-					<form action="../deleteNotice.do">
+					<form action="../deleteNotice">
 						<input name="ntc_seq" type="hidden"
 							value="${getNoticeBoard.ntc_seq }" />
 						<div class="table-responsive px-5">
