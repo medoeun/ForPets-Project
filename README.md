@@ -13,7 +13,9 @@
  작업했던 repository : https://github.com/Seoyeongit/ETeamProject
  
  <br>
- 관리자 파트 및 DB 수정 중(8/08~)
+ 관리자 파트 및 전체 DB 수정 중(8/08~)
+
+ <br>
  
  ## 구현 기능
  <table>
