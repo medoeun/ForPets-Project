@@ -225,10 +225,14 @@ CREATE TABLE reserve
 -- reserve table primary key
 ALTER TABLE reserve ADD CONSTRAINT reserve_num PRIMARY KEY (reserve_num);
 
+DELETE FROM RESERVE WHERE RESERVE_NUM = '3';
+
 -- reserve table 초기값
 INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1509동 111호', '1', 'abc123', 'ppp222', '1');
 INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1503동 111호', '2', 'abc456', 'bpb222', '2');
 INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1507동 111호', '4', 'abc789', 'bow444', '3', '경기도 안산시 단원구 선부광장 1로 81 동네병원');
+INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1507동 111호', '1', 'abc789', 'bow444', '3', '경기도 안산시 단원구 선부광장 1로 81 동네병원');
+
 
 -- serv table sequence
 CREATE SEQUENCE serv_seq
@@ -665,6 +669,7 @@ CREATE SEQUENCE re_seq
   MINVALUE 1
   NOCYCLE;
 
+COMMIT;
 -- reserve table
 -- 예약확인페이지에서 구분하기위해서 status칼럼을 추가했습니다.
 -- pickup 서비스에서 사용할 주소 칼럼을 추가했습니다.
@@ -690,17 +695,24 @@ CREATE TABLE reserve
 
 ALTER TABLE reserve MODIFY PAY_DATE VARCHAR2(20);
 
-UPDATE reserve SET pay_date = '2023/08/15' where reserve_num=1;
-UPDATE reserve SET pay_date = '2023/06/15' where reserve_num=2;
-UPDATE reserve SET pay_date = '2023/07/15' where reserve_num=3;
-commit;
+ALTER TABLE reserve MODIFY reserve_num VARCHAR2(20);
+
+ALTER TABLE reserve ADD re_seq NUMBER(8) NOT NULL;
+
+DROP SEQUENCE RE_SEQ;
+
+
+UPDATE reserve SET pay_date = '2023/08/15' where reserve_num='RN_1';
+UPDATE reserve SET pay_date = '2023/06/10' where reserve_num='RN_2';
+UPDATE reserve SET pay_date = '2023/07/15' where reserve_num='RN_3';
 
 commit;
 
 select * from reserve;
 -- reserve table primary key
 ALTER TABLE reserve ADD CONSTRAINT re_seq PRIMARY KEY (re_seq);
-
+ALTER TABLE RESERVE DROP CONSTRAINT RESERVE_NUM;
+DELETE FROM RESERVE WHERE RE_SEQ=2;
 
 
 -- serv table sequence
@@ -793,6 +805,9 @@ CREATE SEQUENCE user_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
+  
+ALTER SEQUENCE USER_SEQ
+  NOCACHE;
 
 DROP TABLE users;
 
@@ -1196,3 +1211,45 @@ select avg(pr_avg) from partner_review;
 SELECT TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') ASC;
 
 commit;
+
+
+DELETE FROM USERS WHERE USER_NAME = '황건';
+
+INSERT INTO users VALUES('abc123','abc123','김작두','무당','서울시 관악구 신림동 100-1', 'M','010-1111-2222','1989-01-01','0',(user_seq.NEXTVAL),'2023-01-14');
+INSERT INTO users VALUES('abc456','abc456','김명태','어부','경기도 과천시 주암동 122-2', 'M','010-2323-1212','1983-06-07','0',(user_seq.NEXTVAL),'2023-01-14');
+INSERT INTO users VALUES('abc789','abc789','홍당무','채소가게','서울시 서초구 우면동 30-3', 'F','010-3412-5454','1977-07-07','0',(user_seq.NEXTVAL),'2023-01-14');
+INSERT INTO users VALUES('dmsquf','dmsquf123','하은별','별이','서울특별시 노원구 공릉로58나길 18', 'F','010-1241-5454','1997-07-07','0',(user_seq.NEXTVAL),'2023-08-20');
+INSERT INTO users VALUES('gun1123','gun1123','황건','왕거니','서울시 동대문구 용두동 7-2', 'M','010-3241-2252','1994-02-01','0',(user_seq.NEXTVAL),'2023-08-20');
+
+
+select user_seq.currval from dual;
+select user_seq.nextval from dual;
+
+commit;
+alter sequence user_seq nocache;
+
+DROP SEQUENCE USER_seq;
+
+CREATE SEQUENCE user_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCACHE
+  NOCYCLE;
+
+INSERT INTO users VALUES('jinhan3','jinhan3','이한진','한진','경기도 파주시 문산읍 장산로 153-35', 'M','010-1441-2232','1984-02-23','0',(user_seq.NEXTVAL),'2023-08-20');
+INSERT INTO users VALUES('hyelin2','hyelin2','하혜린','혜혜','서울시 중랑구 면목동 16-6', 'F','010-6667-4422','1998-07-04','0',(user_seq.NEXTVAL),'2023-08-20');
+INSERT INTO users VALUES('castle0','castle0','성나영','영캐슬','경기도 부천시 원미동 10', 'F','010-8819-2352','1993-01-06','0',(user_seq.NEXTVAL),'2023-08-20');
+
+INSERT INTO users VALUES('ruyhankyul','ruyhankyul','류한결','드리머','서울시 강북구 미아동 25-2', 'M','010-4778-2353','1994-04-26','0',(user_seq.NEXTVAL),'2023-08-20');
+INSERT INTO users VALUES('youngho','youngho0','안호영','도파','서울시 성동구 성수동2가 4-27', 'M','010-1566-2554','1993-06-06','0',(user_seq.NEXTVAL),'2023-08-20');
+INSERT INTO users VALUES('kakasim','kakasim','심가람','더블웨하스','서울시 종로구 명륜2가 22-1', 'F','010-8899-5776','1993-01-12','0',(user_seq.NEXTVAL),'2023-08-20');
+INSERT INTO users VALUES('strong335','strong335','추힘찬','대머리똑딱삔','경기도 수원시 팔달구 신풍동 27-5', 'M','010-6789-4567','1973-05-16','0',(user_seq.NEXTVAL),'2023-08-20');
+INSERT INTO users VALUES('mirha','mirha','하미르','Himalaya','서울시 동작구 상도1동 18', 'M','010-4665-7988','1983-01-06','0',(user_seq.NEXTVAL),'2023-08-20');
+INSERT INTO users VALUES('hyejichuu','hyejichuu','추혜지','헤지지','경기도 평택시 비전동 29-31', 'F','010-2343-3662','1999-12-29','0',(user_seq.NEXTVAL),'2023-08-20');
+
+COMMIT;
+
+ALTER TABLE partners ADD part_img VARCHAR2(200);
+

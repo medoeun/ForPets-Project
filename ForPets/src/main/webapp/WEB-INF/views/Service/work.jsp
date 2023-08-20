@@ -78,7 +78,7 @@ $(document).ready(function(){
 });
 
 function showPetWorkPopUp() {
-	var url = "http://localhost:8000/biz/findPetWork";
+	var url = "http://localhost:8081/biz/findPetWork";
 	var name = "showPetWork"
 	var option = "width = 540, height = 440, top = 100, left = 200, location = no";
 	window.open(url, name, option);

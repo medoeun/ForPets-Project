@@ -207,7 +207,7 @@ textarea{
 		
 		$('#view-my-post').click(function() {
 			var liurl ="../myInfo/getMyCommu";
-			var newUrl = 'http://localhost:8000/biz/myInfo/getMyCommu';
+			var newUrl = 'http://localhost:8081/biz/myInfo/getMyCommu';
 			$.ajax({
 				type : 'POST',
 				url : liurl,
@@ -225,7 +225,7 @@ textarea{
 		
 		$('#view-my-answer').click(function(){
 			var liurl = "../myInfo/getCommuInMyAnswer";
-			var newUrl = 'http://localhost:8000/biz/myInfo/getCommuinMyAnswer';
+			var newUrl = 'http://localhost:8081/biz/myInfo/getCommuinMyAnswer';
 			$.ajax({
 				type : 'POST',
 				url : liurl,
@@ -242,7 +242,7 @@ textarea{
 		
 		$('#view-my-comment').click(function(){
 			var liurl = "../myInfo/getMyDat";
-			var newUrl = 'http://localhost:8000/biz/myInfo/getMyDat';
+			var newUrl = 'http://localhost:8081/biz/myInfo/getMyDat';
 			$.ajax({
 				type : 'POST',
 				url : liurl,

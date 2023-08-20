@@ -6,14 +6,14 @@ function show_partner() {
 	$("#set_partner").show();
 }
 function getPetListPopUp(){
-	var url = "http://localhost:8000/biz/getPetList";
+	var url = "http://localhost:8081/biz/getPetList";
 	var name = "getPetList"
 	var option = "width = 500, height = 500, top = 100, left = 200, location = no";
 	window.open(url, name, option);
 }
 
 function getPartnerListPopUp() {
-	var url = "http://localhost:8000/biz/getPartnerList";
+	var url = "http://localhost:8081/biz/getPartnerList";
 	var name = "getPartnerList"
 	var option = "width = 500, height = 500, top = 100, left = 200, location = no";
 	window.open(url, name, option);
@@ -24,12 +24,12 @@ function reserveMake() {
 function call_info() {
 	$.ajax({
 			type : "POST",
-			url : "http://localhost:8000/biz/getPet",
+			url : "http://localhost:8081/biz/getPet",
 			data : {pet_id : $("#pet_id").val()},
 			success : function(){
 				$.ajax({
 					type : "POST",
-					url : "http://localhost:8000/biz/getPartner",
+					url : "http://localhost:8081/biz/getPartner",
 					data : {part_id : $("#part_id").val()},
 					success : function(){
 						$("form").submit();

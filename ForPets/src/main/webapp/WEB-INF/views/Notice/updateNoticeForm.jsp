@@ -30,7 +30,7 @@
 			<jsp:include page="../Admin/top.jsp" />
 
 			<div class="container-fluid" id="admin-content">
-				<form action="../updateNotice.do" method="post">
+				<form action="../updateNotice" method="post">
 					<input name="ntc_seq" type="hidden"
 						value="${getNoticeBoard.ntc_seq }" />
 

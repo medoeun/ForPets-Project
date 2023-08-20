@@ -206,7 +206,7 @@ textarea{
 		
 		$('#write-my-review').click(function() {
 			var liurl = "../myInfo/getCptReserve";
-			var newUrl = 'http://localhost:8000/biz/myInfo/review';
+			var newUrl = 'http://localhost:8081/biz/myInfo/review';
 			$.ajax({
 				type : 'POST',
 				url : liurl,
@@ -224,7 +224,7 @@ textarea{
 		
 		$('#view-my-review').click(function(){
 			var liurl = "../myInfo/getwrittenReview";
-			var newUrl = 'http://localhost:8000/biz/myInfo/review-written';
+			var newUrl = 'http://localhost:8081/biz/myInfo/review-written';
 			$.ajax({
 				type : 'POST',
 				url : liurl,

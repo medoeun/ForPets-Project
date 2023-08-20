@@ -96,7 +96,7 @@ public class AdminDAO {
 		pvo.setBirth(resultSet.getDate("birth"));
 		pvo.setData_create(resultSet.getDate("data_create"));
 		pvo.setSelf_infor(resultSet.getString("self_infor"));
-		pvo.setImg(resultSet.getString("part_img"));
+		//pvo.setImg(resultSet.getString("part_img"));
 		pvo.setPart_phnumber(resultSet.getString("part_phnumber"));
 		return pvo;
 	};
