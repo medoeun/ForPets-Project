@@ -96,7 +96,7 @@ public class AdminDAO {
 		pvo.setBirth(resultSet.getDate("birth"));
 		pvo.setData_create(resultSet.getDate("data_create"));
 		pvo.setSelf_infor(resultSet.getString("self_infor"));
-		//pvo.setImg(resultSet.getString("part_img"));
+		pvo.setImg(resultSet.getString("part_img"));
 		pvo.setPart_phnumber(resultSet.getString("part_phnumber"));
 		return pvo;
 	};
@@ -160,7 +160,7 @@ public class AdminDAO {
 		return jdbcTemplate.query(COM_PREV, comRowMapper);
 	}
 
-	public void deleteUser(UserVO uvo, String user_id) {
+	public void deleteUser(String user_id) {
 		jdbcTemplate.update(DELETE_USER, user_id);
 	}
 

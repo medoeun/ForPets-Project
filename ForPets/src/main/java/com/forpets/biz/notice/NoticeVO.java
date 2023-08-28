@@ -1,5 +1,6 @@
 package com.forpets.biz.notice;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -27,4 +28,11 @@ public class NoticeVO {
 	
 	private String searchCondition;
 	private String searchKeyword;
+	
+	private int nc_seq;
+	private String nc_ctnt;
+	private Integer nc_parent;  // nullable이므로 int 아닌 Integer 사용
+	private String user_id;
+	private Timestamp nc_cdate;
+	
 }

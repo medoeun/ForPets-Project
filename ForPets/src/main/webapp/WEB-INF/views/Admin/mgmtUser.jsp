@@ -31,10 +31,9 @@
 	color: #696969;
 }
 
-.card{
+.card {
 	color: #696969;
 }
-
 </style>
 
 
@@ -113,12 +112,18 @@
 											<td>${user.user_name}</td>
 											<td>${user.user_add}</td>
 											<td>${user.data_create}</td>
-											<td><a href="#userDeleteModal" class="trigger-btn"
-												title="탈퇴" data-toggle="modal"><img
-													src="${pageContext.request.contextPath}/resources/assets/img/admin/delete.png"
-													width="24px" alt="정보 보기" /></a> <!-- <a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
-												data-toggle="tooltip"></a> --></td>
+											<td>
+												 <!-- Button trigger modal --> 
+												<input type="hidden" name="modal_id" id="modal_id"> <!-- 매개변수 전달을 위해 modal_id를 hidden타입으로 생성 -->
+												<a href="#userDeleteModal" class="trigger-btn" title="탈퇴"
+												data-toggle="modal" data-target="#userDeleteModal" onclick="SetParamModal('${user.user_id}')">
+												<img src="${pageContext.request.contextPath}/resources/assets/img/admin/delete.png"
+													width="24px" alt="탈퇴" /></a>
+											</td>
 										</tr>
+
+
+
 									</c:forEach>
 								</tbody>
 							</table>
@@ -182,8 +187,7 @@
 				<div class="modal-footer justify-content-center">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-danger"
-						onclick="location.href='${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }'">탈퇴</button>
+					<button type="button" class="btn btn-danger" onclick="Delete()">탈퇴</button>
 				</div>
 			</div>
 		</div>
@@ -213,5 +217,38 @@
 					$("#pageForm").submit();
 				});
 	});
+
+	// modal_id 타입에 전달받은 파라미터 값을 설정
+	// Modal 버튼 클릭 시 호출 
+	function SetParamModal(modal_id) {
+		$('#modal_id').val(modal_id);
+	}
+
+	// Modal창에서 '탈퇴' 버튼 클릭 시 호출
+	function Delete() {
+
+		//Modal 호출시 전달한 id 확인
+		var user_id = $('#modal_id').val();
+
+		console.log('Delete function called with parameter:', user_id);
+
+		// Delete 로직 실행
+		$.ajax({
+			type : 'POST', // HTTP 요청 메소드 선택 (GET, POST 등)
+			url : '${pageContext.request.contextPath}/Admin/deleteUser', // 요청 보낼 URL
+			data : {
+				id : user_id
+			}, // 서버로 보낼 데이터
+			success : function(response) {
+				console.log('Delete request successful:', response);
+
+				// 페이지 새로고침
+		        location.reload();
+			},
+			error : function(error) {
+				console.error('Delete request error:', error);
+			}
+		});
+	}
 </script>
 </html>

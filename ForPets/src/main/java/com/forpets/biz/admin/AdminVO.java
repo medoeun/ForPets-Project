@@ -30,5 +30,4 @@ public class AdminVO {
 	private int service_count; // 서비스별 예약현황
 	private int s_num;
 	
-
 }
