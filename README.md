@@ -8,7 +8,7 @@
 </p>
  
  프레젠테이션 URL : https://www.miricanvas.com/v/11tjdxm
- *기능시현 등 자세한 프로젝트 설명이 첨부되어있습니다*
+ *기능시연 등 자세한 프로젝트 설명이 첨부되어있습니다*
 
  작업했던 repository : https://github.com/Seoyeongit/ETeamProject
  
@@ -16,7 +16,16 @@
  관리자 파트 및 전체 DB 수정 중(8/08~)
 
  <br>
- 
+
+<br>
+[ 2023-08-28 ]
+<br>pom.xml java -11 변경
+<br>mapping annotation 적용을 위해 spring 최신 버전으로 update
+<br>user delete modal 구현 및 테스트 완료
+<br>notice comment VO 및 view 추가
+<br>
+<br>
+
  ## 구현 기능
  <table>
  <tr>
