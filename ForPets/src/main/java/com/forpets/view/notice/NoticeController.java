@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,7 +62,7 @@ public class NoticeController {
 	
 	
 	// 게시판 글 상세보기
-	@RequestMapping(value="/getNoticeBoard.do/{ntc_seq}", method = RequestMethod.GET)
+	@GetMapping(value="/getNoticeBoard/{ntc_seq}")
 	public String getNoticeBoard(NoticeVO vo, NoticeDAO noticeDAO, HttpSession session, @PathVariable(value="ntc_seq") int ntc_seq) {
 
 		System.out.println("getNoticeBoard");

@@ -1194,6 +1194,7 @@ CREATE SEQUENCE pr_seq
 INSERT INTO partner_review VALUES ((pr_seq.NEXTVAL),'ppp222','abc123','5','친절하고 능숙한 펫트너님','애기 병원 픽업할 때마다 믿고 맡길 수 있어요!!',sysdate);
 INSERT INTO partner_review VALUES ((pr_seq.NEXTVAL),'ppp222','abc456','4','좋습니다~!','항상 감사합니다.',sysdate);
 INSERT INTO partner_review VALUES ((pr_seq.NEXTVAL),'bpb222','abc789','3','다 좋지만','좀 더 시간 약속을 지켜 주셨으면 좋겠습니다.',sysdate);
+INSERT INTO partner_review VALUES ((pr_seq.NEXTVAL),'ang1004','hyelin2','5','최고의 펫트너님><','너무너무 믿을 수 있는 친절하고 좋으신 펫트너님이에요 계속 잘 부탁드려요!',sysdate);
 
 
 create table partner_review
@@ -1263,4 +1264,26 @@ ALTER TABLE USER_PET ADD is_vaccin CHAR(1);
 
 commit;
 
+-- 공지사항 댓글 table
+DROP TABLE NOTICE_COMMENTS; 
+
+CREATE SEQUENCE NOTICE_CM_SEQ
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCACHE
+  NOCYCLE;
+
+CREATE TABLE notice_comments
+(
+    nc_seq NUMBER(10) primary key,  -- 시퀀스 
+    nc_ctnt VARCHAR2(255) NOT NULL,          -- 댓글 내용
+    nc_parent NUMBER(10) NULL,               -- 부모 댓글의 seq, 부모가 없는 경우 NULL
+    ntc_seq NUMBER(8) NOT NULL,              -- 공지사항 글 번호
+    user_id VARCHAR2(20) NOT NULL,           -- 회원 아이디
+    nc_cdate TIMESTAMP DEFAULT SYSTIMESTAMP   -- 작성 시간
+);
+
+COMMIT;
 

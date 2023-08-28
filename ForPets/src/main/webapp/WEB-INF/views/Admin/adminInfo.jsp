@@ -42,7 +42,7 @@
 						정보</h1>
 				</div>
 				<div class="card shadow mb-5 py-5 px-5">
-					<form action="../modInfo.do" method="post" id="form-admin">
+					<form action="../modInfo" method="post" id="form-admin">
 						<div class="table-responsive px-5">
 							<table class="table table-borderless align-middle">
 								<tbody>

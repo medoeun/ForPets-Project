@@ -1,6 +1,7 @@
 package com.forpets.view.admin;
 
 import java.util.HashMap;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,10 +10,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -112,7 +117,7 @@ public class AdminController {
 	}
 
 	// 관리자 정보 수정
-	@RequestMapping(value = "/Admin/modInfo", method = RequestMethod.POST)
+	@PostMapping(value = "/Admin/modInfo")
 	public String modInfo(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
 		System.out.println("---> adminInfo update");
 
@@ -127,7 +132,7 @@ public class AdminController {
 			System.out.println("updateAdmin 실패");
 			return "세션이 없습니다";
 		}
-		return "redirect:/Admin/main";
+		return "/Admin/adminInfo";
 	}
 
 
@@ -141,15 +146,30 @@ public class AdminController {
 //		return "/Admin/mgmtUser";
 //	}
 
+
+//	
+//	@RequestMapping(value = "/Admin/deleteUser")
+//	public String deleteUser(UserVO uvo, String user_id) {
+//		System.out.println("deleteUser 실행");
+//		admService.deleteUser(uvo, user_id);
+//		System.out.println("deleteUser 완료");
+//		return "redirect:/Admin/mgmtUser";
+//	}
 	
 	// 회원 탈퇴
-	@RequestMapping(value = "/Admin/deleteUser/{user_id}")
-	public String deleteUser(UserVO uvo, @PathVariable("user_id") String user_id) {
-		admService.deleteUser(uvo, user_id);
-		System.out.println("deleteUser 완료");
-		return "redirect:/Admin/mgmtUser";
-	}
-	
+	@PostMapping("/Admin/deleteUser") // DELETE 요청 처리
+    public String deleteUser(@RequestParam("id") String user_id, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("admin") != null) {
+			System.out.println("deleteUser 실행");
+	        admService.deleteUser(user_id); // user_id를 파라미터로 사용
+	        System.out.println("deleteUser 완료");
+	        return "redirect:/Admin/mgmtUser";
+		} else {
+			System.out.println("관리자 페이지 접근 불가");
+			return "redirect:/";
+		}
+    }
 	
 	// 유저 정보
 	@RequestMapping(value = "/Admin/mgmtUser/{user_id}")

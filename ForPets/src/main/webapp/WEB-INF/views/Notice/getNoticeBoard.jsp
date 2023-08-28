@@ -47,7 +47,7 @@
 								</tr>
 								<tr>
 									<td>내용</td>
-									<td align="left" width="700" height="100"><pre>${getNoticeBoard.ntc_ctnt}</pre></td>
+									<td align="left" width="700" height="100"><pre style="font-size:15px;">${getNoticeBoard.ntc_ctnt}</pre></td>
 								</tr>
 								<tr>
 									<td>등록일</td>
@@ -62,12 +62,36 @@
 									<td align="left">${getNoticeBoard.ntc_hit }</td>
 								</tr>
 								<tr>
-									<td colspan="2" align="right"><input type="button" class="btn border"
-										value="목록" onclick="location.href= '../noticeBoard'" /> <input
+									<td colspan="2" align="right"><input type="button"
+										class="btn border" value="목록"
+										onclick="location.href= '../noticeBoard'" /> <input
 										type="button" class="btn border" value="수정"
 										onclick="location.href= '../updateNoticeForm.do/${getNoticeBoard.ntc_seq}'" />
 										<input type="submit" class="btn border" value="삭제" /></td>
 								</tr>
+							</table>
+							<br>
+							<table class="table align-middle table-hover">
+								<tr>
+
+									<th align="center" class="col-md-1">닉네임</th>
+									<td class="col-10">
+										<p> 댓글 view test 
+										댓글 view test 
+										댓글 view test
+										댓글 view test
+										
+										
+										댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test댓글 view test
+										</p>
+									</td>
+									<td align="right" class="col-1">
+									<small>2023-08-28</small><br>
+									<a href="#"><small>답글</small></a>
+									</td>
+
+								</tr>
+								
 							</table>
 						</div>
 					</form>

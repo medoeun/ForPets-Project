@@ -81,11 +81,11 @@
 									<td><input type="text" class="form-control"
 										name="part_add" value="${partInfo.part_add}"></td>
 								</tr>
-								
+
 								<tr height="50">
 									<td class="align-middle">생년월일</td>
-									<td><input type="text" class="form-control"
-										name="birth" value="${partInfo.birth}"></td>
+									<td><input type="text" class="form-control" name="birth"
+										value="${partInfo.birth}"></td>
 								</tr>
 
 								<tr height="50">
@@ -97,10 +97,33 @@
 
 								<tr height="50">
 									<td class="align-middle">자기소개</td>
-									<td><textarea class="form-control" rows="5" name="self_infor">${partInfo.self_infor}</textarea></td>
+									<td><textarea class="form-control" rows="5"
+											name="self_infor">${partInfo.self_infor}</textarea></td>
 								</tr>
 							</tbody>
 						</table>
+						<table class="table table-borderless align-middle">
+							<tbody>
+								<tr height="50">
+									<td class="align-middle">평균 별점</td>
+									<td style="width: 90%">${avgReview}점</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<table class="table align-middle table-borderless">
+							<tr>
+								<th colspan=2 class="h4 mb-0 text-gray-500 align-middle text-center">
+									파트너 리뷰</th>
+							</tr>
+							<c:forEach var="review" items="${partReview}" varStatus="i">
+								<tr height="50">
+									<td style="width: 25%">${review.pr_title}</td>
+									<td style="width: 75%">${review.pr_content}</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<br>
 					</div>
 				</div>
 			</div>
